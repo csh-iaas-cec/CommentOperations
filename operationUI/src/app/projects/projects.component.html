@@ -1,0 +1,193 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Hii {{currentUser}}</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example home icon" routerLink="/list">home</mat-icon>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <div class="example-container mat-elevation-z8">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>
+      <mat-table #table [dataSource]="matTableSource" multiTemplateDataRows>  
+          
+          <ng-container matColumnDef="SR">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> SR </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.SR}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="EngagementName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> EngagementName </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.EngagementName}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="Hours">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Hours </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.Hours}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail"
+                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-diagram">
+                    <div class="example-element-position"> sample </div>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let element; columns: displayedColumns;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+          </mat-row>
+  <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+      </mat-table>
+  </div> -->
+  
+<div class="example-container mat-elevation-z8" *ngIf="!isSubbu">
+  
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="matTableSource" multiTemplateDataRows>
+
+    <ng-container matColumnDef="SR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SR </th>
+      <td mat-cell *matCellDef="let element"> {{element.SR}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EngagementName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Engagement Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.EngagementName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="OpportunityID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opportunity ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.OpportunityID}} </td>
+    </ng-container>
+    <ng-container matColumnDef="CustomerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.CustomerName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="OpportunityOwner">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opportunity Owner </th>
+      <td mat-cell *matCellDef="let element"> {{element.OpportunityOwner}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Hours">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hours </th>
+      <td mat-cell *matCellDef="let element"> {{element.Hours}} </td>
+    </ng-container>
+   
+
+    <ng-container matColumnDef="expandedDetail">
+        
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+            
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput [(ngModel)]="comment" placeholder="Leave a comment"></textarea>
+          </mat-form-field>
+
+
+          <div class="example-button-row">
+            <button type="button" mat-raised-button color="primary" (click)="getComments()">Submit</button>
+          </div>
+
+
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element" (click)="onSelect(element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>
+
+
+
+<div class="example-container mat-elevation-z8" *ngIf="isSubbu" >
+    <button type="button" (click)="export()" class="export">
+        Export CSV
+      </button>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="matTableSource" multiTemplateDataRows>
+
+    <ng-container matColumnDef="SR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SR </th>
+      <td mat-cell *matCellDef="let element"> {{element.SR}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EngagementName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Engagement Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.EngagementName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="CustomerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.CustomerName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="OpportunityID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opportunity ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.OpportunityID}} </td>
+    </ng-container>
+    <ng-container matColumnDef="TeamMember">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Team Member </th>
+      <td mat-cell *matCellDef="let element"> {{element.TeamMember}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Comment">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comment </th>
+      <td mat-cell *matCellDef="let element"> {{element.Comment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="RevenueType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Revenue Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.RevenueType}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayColumns.length">
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput [(ngModel)]="comment" placeholder="Leave a comment"></textarea>
+          </mat-form-field>
+
+
+          <div class="example-button-row">
+            <button type="button" mat-raised-button color="primary" (click)="getComments()">Submit</button>
+          </div>
+
+
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element" (click)="onSelect(element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>

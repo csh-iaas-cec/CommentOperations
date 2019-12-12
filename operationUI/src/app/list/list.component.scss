@@ -1,0 +1,18 @@
+ .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+.mat-card{
+  width: 40%;
+  margin: 13% 0 0 26%;
+  background:
+  linear-gradient(red, transparent),
+  linear-gradient(to top left, lime, transparent),
+  linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}

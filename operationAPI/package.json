@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mysql/xdevapi": "8.0.18",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "form-data": "^2.3.3",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "mysql": "^2.16.0",
+    "node-cron": "^2.0.3",
+    "node-fetch": "^2.5.0",
+    "node-powershell": "^3.3.1",
+    "python-shell": "^1.0.7",
+    "randomstring": "^1.1.5",
+    "shelljs": "^0.8.3",
+    "strftime": "^0.10.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
